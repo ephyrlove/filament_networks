@@ -292,7 +292,7 @@ After generating the persistence diagram for each filament network from the loca
 
 A support vector machine (SVM) was used to develop a network classifier based on the 3-times re-sampled and vectorized persistence diagrams. $10$-fold cross-validation was again used to assess the accuracy of the SVM classifier. Accuracy was measured only on one of the three sub-sampled networks $R_{i,1}$ per filament network $X_i$ so as to fairly compare to the methods without re-sampling. The mean accuracy of the classifier was 96.3\%. This was the highest accuracy attained on this set of simulated networks.
 
-\subsection{Comparison to other classifier}
+\subsection{Comparison to other classifiers}
 We also list the accuracy rate by using other classifier in Table \ref{tab:accuracyrate}.
 \begin{table}[!htb]
 	\begin{center}
@@ -325,7 +325,21 @@ We also list the accuracy rate by using other classifier in Table \ref{tab:accur
 
 Our findings show that re-sampling of data can produce a more reliable filament network classifier even when data are mapped to a topological space and summarized in persistence diagrams. The $d^c_p$-based classifier performed much better than Wasserstein-based classifier. Our re-sampled and vectorized persistence diagram based classifier and $d^c_p$-based classifier are superior than any other common classifiers. These findings suggest that future with with real data microscopy data may be classified with similar methods.
 
-\color{black}
+\subsection{Application to classifying myosin mutants}
+We are given labeled images of cells belonging to one of two classes: myosin mutant (MM) or wild type (WT). The MM cells have a genetic knockout such that they do not a produce one of their myosin proteins. The WT cells are the control with no knockout. Myosin motor proteins are known, via empirical observation, to influence the connectivity and shape of the actin filament network. This experiment differs from our synthetic experiment in that our synthetic experiment involved the direct manipulation of the actin network through changes in cross-linker abundance. Whereas cross-linking is fundamental to the structure of the actin network, the linkage betweeen mysoin motors and actin networks is more complex and likely modulated by several interacting factors.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=.9\textwidth]{../../fig/wtCell.png}
+	\end{center}
+	\caption{Example of a raw WT cell image.}
+	\label{fig:wtCell}
+\end{figure}
+
+We perform classification of MMs and WTs using our top classifier, the re-sampled SVM. The data are provided as tifs from 22 MM and 20 WT cells. Each tif is a a very high resolution (roughly 2500x500 pixels with 0.043 $\mathrm{\mu m}^2$ pixels) grayscale image, wherein the pixel values are an 8-bit inensity. We perform preprocessing on the images simply by performing a gaussian blur and then thresholding to the top $\frac{1}{3}$ of values. The thresholded image is then a grid of values taking only 0 or 1, where 1 indicates the presense of a filament. We then take the processed images and proceed in classification from step (C) in Figure \ref{fig:resample_algorithm}, resampling, computing PDs, vecorizing the PDs, and finally classifying with an SVM. We find a cross-validated (k=5) accuracy of roughly 73\%.
+
+Interpretation of these results is complicated by our uncertainty of the true, cumulative impact of the moyin knockout on the actin network. While the accuracy in this experiment is significantly lower than found in the analysis of the synthetic data, this could easily be explained by the single motor protein knockout having a relatively minor impact on actin organization when compared with up or down regualtion of cross-linkers. Out of curiosity, we conducted a small survey (\textit{n}=6), wherein we asked respondents who were familiar with the experiment to sepparate the cells into two classes. We found that respondents had an average accuracy of 63\%, with a minimum accuracy of random chance and a maximum accuracy of 75\%. Since our algorithm is (on average) more effective than manual classification by an expert, we conclude that there is likely a weak relationship between this mysoin knockout and actin network structure, and our classification algorithm is likely running into the ceiling of discernible difference in classes.
+
 
 \section{Conclusion}
 In this work, we successfully classified simulated actin filament networks generated under different initial conditions with very high accuracy. We combined a machine learning framework with TDA and proposed two classifiers. One is a distance-based classifier based on a new advanced distance on the persistence diagram space, i.e., the $d^c_p$ distance; Another one is a non-distance-based classifier with re-sampling and persistence vectorization. Both of these methods were built on the foundation of topological homology by encoding geometric features hidden in the data into the topological features and summarizing those into persistence diagrams.
