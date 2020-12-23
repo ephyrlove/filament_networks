@@ -163,7 +163,7 @@ As discussed, actin filaments are thought to be organized by cross-linking on ac
 To classify filament networks, we need to build a structure which reveals geometric features hidden in the data. We construct this structure with simplicial complexes in the typical way of persistence homology by using the 2-dimensional coordinates of actin beads along the filaments as the initial nodes. Simplcial complexes provide a bridge between the data space and a topological space in which computation of distances between sets of data points can be realized. A simplicial complex is a finite collection of simplices of different dimensions such that faces of simplices are also simplices, and intersections of the simplices are either empty or a face of both \cite{edelsbrunner2010computational}. In particular, higher dimensional simplices are constructed from lower dimensional simplices. Vertices are 0-dim simplices. A 1-dim simplex is called an edge and is created by its two vertices as faces (note that a higher dimensional edge is constructed from lower dimensional points). A 2-dim simplex or a triangle has three edges as faces. Further more, a 3-dim simplex or a tetrahedron has four triangles as faces, another nesting of several lower dimensional features to build one of higher dimension.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In order to build simplicial complexes, we adopt the procedure of forming Vietoris-Rips complexes on each dataset (actin network) by introducing a sequence of $\epsilon$-balls with increasing radius $\epsilon$ centered at each data point (actin bead). Simplicial complexes are constructed based on intersections of these $\epsilon$-balls and each value of $\epsilon$ corresponds to an unordered group of homological features, which is called a homology group. Considering values of $\epsilon$ as a timeline, we only record when a homological feature appears and disappears. These indexes are called the birth times and death times of a particular homological feature. Moreover, the lifespan (death minus birth) of a homological feature is referred to as the feature's persistence. A set of homological features gives rise to a set of persistence measures. At the end of this procedure, when radius $\epsilon$ is sufficient larger so that the homology group remains unchanged even by further increase the radius, information of a filament network's persistence homology (the set of persistent homology measurements) is summarized in a persistence diagram.
+In order to build simplicial complexes, we adopt the procedure of forming Vietoris-Rips complexes on each dataset (actin network) by introducing a sequence of $\epsilon$-balls with increasing radius $\epsilon$ centered at each data point (actin bead). Simplicial complexes are constructed based on intersections of these $\epsilon$-balls and each value of $\epsilon$ corresponds to an unordered group of homological features, which is called a homology group. Considering values of $\epsilon$ as a timeline, we only record when a homological feature appears and disappears. These indexes are called the birth times and death times of a particular homological feature. Moreover, the lifespan (death minus birth) of a homological feature is referred to as the feature's persistence. A set of homological features gives rise to a set of persistence measures. At the end of this procedure, when radius $\epsilon$ is sufficient larger so that the homology group remains unchanged even by further increase the radius, information of a filament network's persistence homology (the set of persistpent homology measurements) is summarized in a persistence diagram.
 
 To illustrate the process of building a persistence diagram, we provide a depiction of a simple network in Fig. \ref{fig:persistencediagram}. We show the data points in 2-dimensional space, investigating $\epsilon$ from $0$ to $1.25$ and recording 0-dim and 1-dim homological features. These features are interchangeably referred to as connected components and holes respectively. More exactly, 0-dim homological features measure the connectedness of the data and 1-dim homological features capture the number of one dimensional holes in the data. When $\epsilon$ is relatively small, five individual components are present. When $\epsilon$ increases to $0.71$, four $\epsilon$-balls in the upper half area have intersected and four components merge into one connected component. This simultaneously gives rise to a hole. When $\epsilon$ is enlarged to $0.85$, all components merge into one connected component, though the hole survives. When $\epsilon$ is continuously increases to $1$, the only 1-dim hole vanishes. No extra information is gained while $\epsilon$ is grown to $1.25$. The appearance and disappearance of 0-dim and 1-dim features are summarized as black dots (connect components) and red triangles (holes) in a persistence diagram at the end. Notice for $0$-dim homological features, $3$ connected components are born at $0$ and die at $0.71$, $1$ connected component is born at $0$ and dies at $1$, $1$ connected component is born at $0$ and survive to the end. For $1$-dim homological features, a $1$ hole is born at $0.71$ and dies at $1$. Thus, persistence homology provides information on the connectedness and holes induced from the Vietoris-Rips complexes on the points cloud. 
 
@@ -171,9 +171,19 @@ Overall, persistence homology indirectly summarizes the hidden shape of the data
 
 \begin{figure}[!htbp]
 	\begin{center}
-		\includegraphics[width=1\textwidth]{pd_example.png}
+		\includegraphics[width=1\textwidth]{figures/filaments_demo.png}
 	\end{center}
-	\caption{Approach depiction of making persistence homology. Beginning from $\epsilon=0$, there are $5$ components. We show the key $\epsilon$ values where components are born or die. When $\epsilon=0.5$, $5$ components stay alive. When $\epsilon=0.71$, $4$ components connect into one connected component, forming a $1$ hole, thus $3$ components die and $1$ hole is born. When $\epsilon=0.85$, $2$ components further connect into $1$, therefore, $1$ more component dies. Finally, when $\epsilon=1$, the only $1$ hole dies and only the $1$ connected component survives. No additional homological change while $\epsilon$ is grown to $1.25$. The persistence homology of this complex is summarized in the persistence diagram.}
+	\caption{Demonstration fillament network. This network contains 3 filaments. Points are sampled along the filaments, in order to produce a point cloud from which persistence homology can be studied.}
+	\label{fig:demoNetwork}
+\end{figure}
+
+Figure \ref{fig:persistencediagram} depicts the process of discovering and summarizing the persistence homology of a simple filament network. When $\epsilon=0$, the sampled points of the filament network are each their own connected component. In the first column, when $\epsilon=0.3$, several of the sampled points have already connected. We denote the points which have died (merged into a larger connected component), by ending their bar in the barcode row, and plotting a point at 0 on the x-axis and at their precise time of death on the y-axis. 
+
+\begin{figure}[!htbp]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{figures/filaments_rips.png}
+	\end{center}
+	\caption{Investigation of the persistence homology of the demonstration filament network in Figure \ref{fig:demoNetwork}. The first row of figures, showes the growing $\epsilon$-spheres about the sampled points of the fillaments. The second row shows the corresponding persistence barcode. The third row shows the corresponding persistence diagram. The columns progress with the algorithm, right-to-left.}
 	\label{fig:persistencediagram}
 \end{figure}
 
@@ -246,7 +256,7 @@ Due to the exponential growth of the computation of the Vietoris-Rips complex, r
 
 \begin{figure}[tbp]
 	\begin{center}
-		\includegraphics[width=1\textwidth]{resample_algo.PNG}
+		\includegraphics[width=1\textwidth]{figures/resample_algo.png}
 	\end{center}
 	\caption{Example of one filament construction (B) from the supplied point cloud (A), rasterization (C), re-sampling (D), construction of persistence diagram (E) and vectorization of persistence diagram (F). The point cloud in (A) was supplied with an index that allowed for the constrution of the filaments in (B); note the coloring. This was projected onto a 200x200 raster (C). The raster was sampled into 3 sets (colored) of 1000 points (D) without replacement and the x,y coordinates are used to generate a VR complex. The persistence diagrams and vectorizations in (E) and (F) are colored the same as (D), to show the variability that arises in the vectorized persistence diagram features when this approach is taken.}
 	\label{fig:resample_algorithm}
@@ -330,7 +340,8 @@ We are given labeled images of cells belonging to one of two classes: myosin mut
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=.9\textwidth]{../../fig/wtCell.png}
+	    %TODO: add figure from src to figures and reference correctly
+		%\includegraphics[width=.9\textwidth]{figures/wtCell.png}
 	\end{center}
 	\caption{Example of a raw WT cell image.}
 	\label{fig:wtCell}
