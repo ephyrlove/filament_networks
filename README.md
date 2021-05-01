@@ -26,6 +26,7 @@ This is the meat of this repository, so I will outline all files:
 * classify_cells_from_skeletons.R
   * This is the most recent and most important file. This file contains code to go from Andreas's skeletonized (preprocessed) images of cells to a subsampled rips diagram, summary stats, SVM classifier, and visualization of clustering results.
 * classify_cells.R
+   * This is the essentially the same code as above, but inteded for a raw cell with no preprocessing. Therefore, this file includes preprocessing code to enhance filaments. This file contains code to go from Andreas's skeletonized (preprocessed) images of cells to a subsampled rips diagram, summary stats, SVM classifier, and visualization of clustering results.
 * classify_was.R
 * compare_old_new.R
 * dpc.R
@@ -33,7 +34,9 @@ This is the meat of this repository, so I will outline all files:
 * filament_images_ripser.R
 * ko_2ko_wt_micro.R
 * mutant_vs_wildtype_ANsum.R
+  * This looks specifically at Andreas's summary data, though this data became important to many analyses.
 * mutant_vs_wildtype_micro_noThresh_6f_newData.R
+  * The files with \*6f\* were just my rewriting of the subsampling code to be able to take the number of subsamples as an argument.
 * mutant_vs_wildtype_micro_noThresh_6f.R
 * mutant_vs_wildtype_micro_noThresh.R
 * mutant_vs_wildtype_micro.R
