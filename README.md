@@ -1,7 +1,7 @@
 # filament_networks
 
-##/fig
+## /fig
 
-##/doc
+## /doc
 
-##/src
+## /src
