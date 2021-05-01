@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+
+\usepackage{fullpage} % Package to use full page
+\usepackage{parskip} % Package to tweak paragraph skipping
+\usepackage{tikz} % Package for drawing
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphics,multirow,cases,algorithm,algpseudocode}
+\usepackage{booktabs,color,comment}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm,amssymb,verbatim,bbm}
+%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{url}
+\usepackage{nomencl}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{float}
+
+\usepackage[normalem]{ulem}
+
+\newcommand*{\bbar}[1]{\bar{\bar{#1}}}
+
+\newcommand{\R}{{\mathcal{R}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\D}{{\mathcal{D}}}
+\newcommand{\F}{{\mathcal{F}}}
+\renewcommand{\S}{{\mathcal{S}}}
+\newcommand{\spb}{{\smallskip}}
+\newcommand{\mpb}{{\medskip}}
+\newcommand{\bpb}{{\bigskip}}
+\newcommand{\IN}{{\mathbb{N}}}
+\newcommand{\IM}{{\mathbb{M}}}
+\newcommand{\IZ}{{\mathbb{Z}}}
+\newcommand{\IR}{{\mathbb{R}}}
+\newcommand{\IE}{{\mathbb{E}}}
+\newcommand{\IP}{{\mathbb{P}}}
+\newcommand{\IC}{{\mathbb{C}}}
+\newcommand{\mO}{{\mathcal{O}}}
+%\newcommand{\IR}{{\mathbb{R}}}
+%\newcommand{\IC}{{\mathbb{C}}}
+%\newcommand{\IN}{{\mathbb{N}}}
+%\newcommand{\IE}{{\mathbb{E}}}
+%\newcommand{\IP}{{\mathbb{P}}}
+\newcommand{\mF}{{\mathcal{F}}}
+\newcommand{\mE}{{\mathcal{E}}}
+\newcommand{\tT}{\intercal}
+\newcommand{\mT}{{\mathcal{T}}}
+\newcommand{\mconv}{{\mathrm{conv}}}
+\newcommand{\mC}{{\mathcal{C}}_{2 \pi}}
+\newcommand{\IX}{{\mathbb{X}}} %domain
+\newcommand{\IS}{{\mathbb{S}}} %domain
+\newcommand{\ID}{{\mathbb{D}}}
+\newcommand{\IY}{{\mathbb{Y}}}
+\newcommand{\cSm}{{\cal S}^{(m)}}
+\newcommand{\cS}{{\cal S}_N}
+\newcommand{\SM}{{\mathcal{P}}}
+\newcommand{\SN}{{\mathcal{Q}}}
+\newcommand{\SB}{{\mathcal{B}}}
+\newcommand{\SD}{{\mathcal{D}}}
+
+\newcommand{\iin}{\frac{i}{n}}
+\newcommand{\jjn}{\frac{j}{n}}
+\newcommand{\sumi}{\dsum_{i=1}^{n}}
+\newcommand{\sumN}{\dsum_{i=1}^{N}}
+\newcommand{\sumT}{\dsum_{t=1}^{T}}
+\newcommand{\sumj}{\dsum_{j=1}^{n}}
+\newcommand{\sumij}{\dsum_{i<j}}
+\newcommand{\Xt}{{X_{t}}}
+\newcommand{\Yt}{{Y_{t}}}
+\newcommand{\la}{{\lambda}}
+\newcommand{\bA}{{\bf A}}
+\newcommand{\bB}{{\bf B}}
+\newcommand{\bC}{{\bf C}}
+\newcommand{\bAs}{{\bf A}_{\epsilon}}
+\newcommand{\Bs}{B^{(\epsilon)}}
+\newcommand{\bT}{{\bf T}}
+\newcommand{\bu}{{\bf u}}
+\newcommand{\bb}{{\bf b}}
+\newcommand{\cT}{{\cal T}}
+\newcommand{\cW}{{\cal W}}
+\newcommand{\cC}{{\cal C}_{\epsilon}}
+\newcommand{\cD}{{\mathcal{D}}}
+\newcommand{\dx}{\Delta x}
+\newcommand{\dt}{\Delta t}
+\newcommand{\ep}{\epsilon}
+\newcommand{\pC}{\partial C}
+
+\makenomenclature
+\renewcommand{\nomname}{List of Symbols}
+%\renewcommand{\nompreamble}{The next list describes several symbols that will be later used within the body of the document}
+
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\DeclareMathOperator*{\argminA}{arg\,min} % Jan Hlavacek
+\DeclareMathOperator*{\argminB}{argmin}   % Jan Hlavacek
+\DeclareMathOperator*{\argminC}{\arg\min}   % rbp
+
+
+% Latin text highlight
+\def\latin#1{\emph{#1}}
+
+% Mark-up commands
+\def\Red#1{\textbf{\textcolor{red}{#1}}}	% for authors
+\def\Blue#1{\textbf{\textcolor{blue}{#1}}}	% for reviewers
+
+
+\title{TDA - filament network classification}
+%\author{Le Yin, Ephy Love}
+\date{November 2019}
+
+% path to graphics
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\maketitle
+
+
+
+$$
+\{X_{i,C_{825}}...X_{50,C_{825}}, X_{i,C_{1650}}...X_{50,C_{1650}},X_{i,C_{3300}}...X_{50,C_{3300}}\}
+$$
+
+
+$$
+\{X_{1,C_{825}}...X_{40,C_{825}}; X_{1,C_{1650}}...X_{40,C_{1650}}; X_{1,C_{3300}}...X_{40,C_{3300}}\}
+$$
+
+$$
+\{X_{41,C_{?}}...X_{50,C_{?}}; X_{41,C_{?}}...X_{50,C_{?}}; X_{41,C_{?}}...X_{50,C_{?}}\}
+$$
+
+
+$$
+\{X_{1,C_M}...X_{22,C_{M}}; X_{1,C_{W}}...X_{20,C_W}\}
+$$
+
+$$
+\{X_{1,C_M}...X_{18,C_{M}}; X_{1,C_{W}}...X_{16,C_W}\}
+$$
+
+$$
+\{X_{1,C_{\theta}}...X_{8,C_\theta}\}
+$$
+
+$$
+\{X_{19,C_M}...X_{22,C_{M}}; X_{17,C_{W}}...X_{20,C_W}\}
+$$
+
+
+$$
+\{D_{1,C_{\theta}}...D_{8,C_\theta}\}
+$$
+
+$$
+\{X_{19,C_M}...X_{22,C_{M}}; X_{17,C_{W}}...X_{20,C_W}\}
+$$
+
+$$
+\{D_{1,C_M}...D_{18,C_{M}}; D_{1,C_{W}}...D_{16,C_W}\}
+$$
+
+
+
+\end{document}
+
+
+
+
