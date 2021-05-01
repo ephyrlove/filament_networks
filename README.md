@@ -1,5 +1,8 @@
 # filament_networks
 
+## /data
+This directory contains a lot of data and so is not in the git. Talk to me or Dr. Maroulas for access to the data.
+
 ## /fig
 This folder contains the output figures, mostly from R. These figures were used in ERL's dissertation and likely to be used in manuscript with supergroup.
 
