@@ -39,6 +39,7 @@ This is the meat of this repository, so I will outline all files:
 * mutant_vs_wildtype_ANsum.R
   * This looks specifically at Andreas's summary data, though this data became important to many analyses.
 * mutant_vs_wildtype_micro_noThresh_6f_newData.R
+  * All mutant_vs_wildtype... files have been surplanted for the most part by the classify_cells files. THese have some alternative sampling methods, but probably nothing worth fishing through.
   * The files with \*6f\* were just my rewriting of the subsampling code to be able to take the number of subsamples as an argument.
 * mutant_vs_wildtype_micro_noThresh_6f.R
 * mutant_vs_wildtype_micro_noThresh.R
