@@ -45,6 +45,7 @@ This is the meat of this repository, so I will outline all files:
 * mutant_vs_wildtype_micro.R
 * persistance_images.R
 * plot_several_cells.R
+  * Some handy test code for plotting groups of cells and labeling for clustering resutls.
 * prepare_cells_for_quiz.R
 * simplicial_complex demo.R
 * synth_eda_pd_alternatives.R
