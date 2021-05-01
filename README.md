@@ -24,7 +24,7 @@ This contains the original manuscript code. The complete history on just the man
 This is the meat of this repository, so I will outline all files:
 
 * classify_cells_from_skeletons.R
-** This is the most recent and most important file. This file contains code to go from Andreas's skeletonized (preprocessed) images of cells to a subsampled rips diagram, summary stats, SVM classifier, and visualization of clustering results.
+  * This is the most recent and most important file. This file contains code to go from Andreas's skeletonized (preprocessed) images of cells to a subsampled rips diagram, summary stats, SVM classifier, and visualization of clustering results.
 * classify_cells.R
 * classify_was.R
 * compare_old_new.R
